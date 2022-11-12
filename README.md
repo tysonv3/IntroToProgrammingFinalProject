@@ -23,8 +23,8 @@ This puzzle video game is colorful with the blocks that it brings. It is a 2-D g
 * any advice for common or issues, contact me
 
 ## Authors
-name: Tyson Vu
-email: tyson.vu24@bcp.org
+* name: Tyson Vu
+* email: tyson.vu24@bcp.org
 
 ## License
 This project is licensed under the MIT License. See the LICENSE.md file for details.
