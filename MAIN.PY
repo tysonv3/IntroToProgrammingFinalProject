@@ -36,8 +36,6 @@ colors = [
 ''' classes '''
 # this creates a class for the tetris blocks and it holds the matrix that contains the information for the shape of the block
 class BlockShapes:
-    x = 0
-    y = 0
     
     shapes = [
         [[1, 5, 9, 13]], [[4, 5, 6, 7]],
