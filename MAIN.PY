@@ -34,17 +34,24 @@ colors = [
 ''' utility functions '''
 
 ''' classes '''
-# this creates a class for the tetris blocks + it holds the matrix that contains the information for the block
+# this creates a class for the tetris blocks + it holds the matrix that contains the information for the block + its rotation
 class Block:
 
     # possible block representation + its possible rotations
     blocks = [
+        # i-block + rotation
         [[1, 5, 9, 13]], [[4, 5, 6, 7]],
+        # z-block + rotation
         [[4, 5, 9, 10]], [[2, 6, 5, 9]],
+        # s-block + rotation
         [[6, 7, 9, 10]], [[1, 5, 6, 10]],
+        # j-block + rotations
         [[1, 2, 5, 9]], [[0, 4, 5, 6]], [[1, 5, 9, 8]], [[4, 5, 6, 10]],
+        # l-block + rotations
         [[1, 2, 6, 10]], [[5, 6, 7, 9]], [[2, 6, 10, 11]], [3, 5, 6, 7],
+        # t-block + rotations
         [[1, 4, 5, 6]], [[1, 4, 5, 9]], [[4, 5, 6, 9]], [[1, 5, 6, 9]],
+        # o-block
         [[1, 2, 5, 6]]
              ]
     
@@ -92,4 +99,13 @@ class Tetris:
         self.block = Block(3, 0)
 
     def intersects(self):
-        pass
+        intersection = False
+        for i in range(4):
+            for j in range(4):
+                if i * 4 + j in self.figure.image():
+                    if i + self.figure.y > self.height - 1 or \
+                        j + self.figure.x > self.width - 1 or \
+                        j + self.figure.x < 0 or \
+                        self.field[i + self.figure.y][j + self.figure.x] > 0:
+                        intersection = True
+        return intersection
