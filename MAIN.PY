@@ -29,6 +29,8 @@ colors = [
     (240, 160, 1),
     (240, 0, 0),
     (240, 240, 2),
+    (255, 255, 255),
+    (128, 128, 128)
          ]
 
 # block + rotations
@@ -84,7 +86,7 @@ t_block = [
 ''' utility functions '''
 
 ''' classes '''
-# this creates a class for the tetris blocks + it holds the matrix that contains the information for the block + its rotation
+# this creates a class for the tetris block + it holds the matrix that contains the information for the block + its rotation
 class Block:
 
     # possible block representation + its possible rotations
@@ -103,7 +105,7 @@ class Block:
         self.x = x
         self.y = y
         self.block = random.randint(0, len(self.blocks) - 1)
-        self.color = random.random(1, len(colors) - 1)
+        self.color = random.randint(1, len(colors) - 1)
         self.rotation = 0
 
     # rotate + get the current location
@@ -118,7 +120,7 @@ class Tetris:
     level = 2
     score = 0
     state = "start"
-    # field of the game that contains zeros where it is empty + colors where there are figures
+    # field of the game that contains zeros where it is empty + colors where there are blocks
     field = []
     height = 0 
     width = 0 
@@ -146,10 +148,21 @@ class Tetris:
         intersection = False
         for i in range(4):
             for j in range(4):
-                if i * 4 + j in self.figure.image():
-                    if i + self.figure.y > self.height - 1 or \
-                        j + self.figure.x > self.width - 1 or \
-                        j + self.figure.x < 0 or \
-                        self.field[i + self.figure.y][j + self.figure.x] > 0:
+                if i * 4 + j in self.block.image():
+                    if i + self.block.y > self.height - 1 or \
+                        j + self.block.x > self.width - 1 or \
+                        j + self.block.x < 0 or \
+                        self.field[i + self.block.y][j + self.block.x] > 0:
                         intersection = True
         return intersection
+
+# initialize game + create a window
+pygame.init()
+
+screen = pygame.display.set_mode((1000, 500))
+pygame.display.set_caption("Walmart Tetris")
+clock = pygame.time.Clock()
+fps = 60
+counter = 0
+
+pygame.quit()
