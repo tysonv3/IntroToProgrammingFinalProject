@@ -90,15 +90,7 @@ t_block = [
 class Block:
 
     # possible block representation + its possible rotations
-    blocks = [
-        [i_block],
-        [z_block],
-        [s_block],
-        [j_block],
-        [l_block],
-        [t_block],
-        [o_block]
-             ]
+    blocks = [[i_block, z_block, s_block, j_block, l_block, t_block, o_block]]
     
     # randomly picks a block + color
     def __init__(self, x, y):
@@ -156,13 +148,18 @@ class Tetris:
                         intersection = True
         return intersection
 
+    # if the blocks moves down and intersects
+
 # initialize game + create a window
 pygame.init()
 
-screen = pygame.display.set_mode((1000, 500))
-pygame.display.set_caption("Walmart Tetris")
-clock = pygame.time.Clock()
-fps = 60
-counter = 0
+# displaying the window with set size
+pygame.display.set_mode((400, 500))
+pygame.display.set_caption('Walmart Tetris')
 
-pygame.quit()
+# game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
