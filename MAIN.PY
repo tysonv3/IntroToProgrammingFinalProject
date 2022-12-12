@@ -125,6 +125,9 @@ class Tetris:
     def __init__(self, height, width):
         self.height = height
         self.width = width
+        self.field = []
+        self.score = 0
+        self.state = "start"
         for i in range(height):
             new_line = []
             for j in range(width):
@@ -148,7 +151,28 @@ class Tetris:
                         intersection = True
         return intersection
 
-    # if the blocks moves down and intersects
+    # checks if it reaches the bottom to stop the block from continuing to move
+    def stop(self):
+        for i in range (4):
+            for j in range(4):
+                if i * 4 + j in self.figure.image():
+                    self.field[i + self.figure.y][j + self.figure.x] > 0
+                intersection = True
+        return intersection
+
+    # checks if full lines are completed 
+    def break_lines(self):
+        lines = 0
+        for i in range(1, self.height):
+            zeros = 0
+            for j in range(self.width) == 0:
+                zeros += 1
+        if zeros == 0:
+            lines += 1
+            for i1 in range(i1, 1, -1):
+                for j in range(self.width):
+                    self.field[i1][j] = self.field[i1 - 1][j]
+        self.score += lines ** 2
 
 # initialize game + create a window
 pygame.init()
